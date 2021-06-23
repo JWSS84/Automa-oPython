@@ -1,0 +1,71 @@
+projeto em python
+automatizar processos ou sistemas com python
+usando a biblioteca pandas
+
+1-importar biblioteca pandas
+pip install pandas no terminal do pycharm
+
+2- copiar a planilha excel para o pycharm
+
+3- criar variavel tabelas-vendas para ler planilha
+
+4-para o pycharm "ler a planilha" precisa importar
+no terminal openpyxl
+
+5- para melhor visualização, antes de "printar" a planilha,
+pd.set_option('display.max_columns',None)
+
+6- metodo de filtros e agrupamento no pandas
+para filtrar usa-se entre 2 [[lista de valores ]]
+com as colunas que deseja consultar
+
+1 metodo: tabela_vendas[['ID Loja','Valor Final']]
+
+2 metodo: tabela_vendas.grouby('ID Loja').sum()
+nesse segundo metodo é agrupado uma vez cada loja
+e somar as colunas.(faturamento por loja)
+
+tabela final;
+tabela_vendas[['ID Loja','Valor Final']].groupby('ID Loja).sum()
+
+ticket_medio = (faturamento['Valor Final'] / quantidade['Quantidade']).to_frame()
+print(ticket_medio)
+
+7- para enviar o email pelo pandas instale no terminal do
+pycharm 'pywin32- pip install pywin32
+
+codigo pra envio:STACK OVERFLOW(pesquisa)
+
+import win32com.client as win32 (importa a biblioteca correta)
+outlook = win32.dispatch('outlook.application') (se conecta com o app de email)
+mail = outlook.CreateItem(0) (cria um email)
+mail.To = 'email que deseja enviar'
+mail.Subject = 'Assunto do email'
+mail.HTMLBody = '''(texto do corpo do email)
+
+Prezados,
+
+Segue o Relatório de vendas por cada loja.
+
+Faturamento:
+{}
+
+Quantidade vendida:
+{}
+
+Ticket Médio dos produtos de cada loja:
+{}
+
+Qualquer dúvida, estou a disposição.
+
+Att,
+JARBAS.
+ '''
+
+mail.Send()
+
+print('email enviado')
+
+8- ajustes pra ficar apresentável
+(formatters={'Valor Final':'R${:,.2f}'.format})
+formatação de cifrão e casas decimais, 2 casas após a virgula
